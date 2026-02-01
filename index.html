@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подарок для лучшей подруги</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f3ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #d63384;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        /* Шкатулка */
+        .treasure-box {
+            background-color: #f8f0e6;
+            border-radius: 15px;
+            padding: 50px 20px;
+            border: 3px solid #e6d0b5;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        /* Единственный предмет */
+        .story-item {
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+        
+        .story-item:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        .item-icon {
+            width: 180px;
+            height: 180px;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a8edea);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 5px solid white;
+            position: relative;
+        }
+        
+        .item-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        
+        /* Наклейка "Клик!" */
+        .click-sticker {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #ff6b9d;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transform: rotate(15deg);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            z-index: 2;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: rotate(15deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.1); }
+        }
+        
+        .item-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #5a4a42;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 25px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #a8e6cf;
+            color: #555;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        #friend-name {
+            font-weight: bold;
+            color: #d63384;
+        }
+        
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container > * {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .story-item {
+            animation-delay: 0.5s;
+            animation-fill-mode: both;
+        }
+        
+        /* Сердечки вокруг */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff9ec0;
+            animation: floatHeart 3s infinite ease-in-out;
+        }
+        
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) rotate(0); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(10deg); opacity: 1; }
+        }
+        
+        .heart:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { top: 20%; right: 15%; animation-delay: 0.5s; }
+        .heart:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 1s; }
+        .heart:nth-child(4) { bottom: 15%; right: 25%; animation-delay: 1.5s; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-heart"></i> Хээээй, тебе 20 todaaayy 🎉</h1>
+            <p>а давай-ка отмотаем чуток назад... ну совсем чуть-чуть 👀</p>
+        </header>
+
+        <main class="treasure-box">
+            <!-- Сердечки вокруг -->
+            <div class="hearts">
+                <div class="heart">❤️</div>
+                <div class="heart">❤️</div>
+                <div class="heart">❤️</div>
+                <div class="heart">❤️</div>
+            </div>
+            
+            <!-- Единственный предмет — Наша история -->
+            <a href="story.html" class="story-item" title="Кликни на мем-кота!">
+                <div class="item-icon">
+                    <div class="click-sticker">КЛИК!</div>
+                    <!-- Замени src на путь к вашему мем-коту -->
+                    <img src="images/mem-cat.jpg" alt="Мем-кот" onerror="this.onerror=null; this.src='https://cdn.decorartor.ru:8444/src/product/cat-with-a-glass-of-wine-unframed/webp/full/cat-with-a-glass-of-wine-unframed_1.webp';">
+                </div>
+                <div class="item-label">Клик! 🐱</div>
+            </a>
+        </main>
+
+        <footer class="footer">
+            <p>❤️</p>
+</footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Добавляем имя подруги
+            document.getElementById('friend-name').textContent = '[Имя подруги]';
+            
+            // Добавляем имя отправителя
+            document.querySelector('strong').textContent = '[Твое имя]';
+            
+            // Звук при клике
+            const storyItem = document.querySelector('.story-item');
+            storyItem.addEventListener('click', function() {
+                const sound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-cat-meow-112.mp3');
+                sound.volume = 0.5;
+                sound.play().catch(e => console.log("Звук не воспроизвелся"));
+                
+                // Анимация клика
+                storyItem.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    storyItem.style.transform = 'scale(1)';
+                }, 150);
+            });
+            
+            // Добавляем случайные сердечки
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                
+                document.querySelector('.hearts').appendChild(heart);
+                
+                // Удаляем сердечко после анимации
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+            
+            // Создаем сердечки каждые 0.5 секунд
+            setInterval(createHeart, 500);
+            
+            // Создаем начальные сердечки
+            for(let i = 0; i < 8; i++) {
+                createHeart();
+            }
+        });
+    </script>
+</body>
+</html>
